@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HW15 is too long</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron" style="text-align: center">
+            <h1>Belly Button Biodiversity</h1>
+            <p>HW15 InteractiveVisualization and Dashboards</p>
+        </div>
+
+        <!-- dropdown -->
+        <div class="row" id="selDataset">
+            <div class="col-md-2">
+            <h1 class="heading">dropdown goes here</h1>
+            <h3 class="heading">{{listings.title}}</h3>
+            <h4 class="heading">{{listings.mn_para}}</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <h2>Look at all of the current pet pals!</h2> -->
+                <div id="plot"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <h2><a href="/send">Add your pet here!</a></h2> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>
