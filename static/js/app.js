@@ -1,3 +1,32 @@
+build_DD()
+
+function build_DD() {
+    var dd_stuff = Plotly.d3.select("selDataset")
+    var dd_url = "/names";
+    Plotly.d3.json(dd_url, function (error, response) {
+        // if error
+        // loop & append
+        for (var i = 0; i < response.length; i++){
+            // create option tag
+            // get the element
+            // add text
+            // add value to option tag
+            // append to dropdown
+            dd_stuff.appe 
+            for(var i = 0; i< response.length;i++){
+                var elements = document.createElement("option");
+                var arr = response[i];
+                elements.textContent = arr;
+                elements.value = arr;
+                dropdown.appendChild(elements);
+        };
+        }
+
+    })
+}
+
+
+
 function buildPlot() {
     /* data route */
     var url = "/api/pals";

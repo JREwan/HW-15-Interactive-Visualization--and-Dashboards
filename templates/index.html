@@ -8,6 +8,7 @@
     <title>HW15 is too long</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
 </head>
 
 <body>
@@ -18,26 +19,64 @@
         </div>
 
         <!-- dropdown -->
-        <div class="row" id="selDataset">
-            <div class="col-md-2">
-            <h1 class="heading">dropdown goes here</h1>
-            <h3 class="heading">{{listings.title}}</h3>
-            <h4 class="heading">{{listings.mn_para}}</h4>
-            </div>
-        </div>
+        <select id="selDataset" onchange="optionChanged(this.value)">
+            <!-- <option selected disabled>SELECT Sample:</option> -->
+            <!-- <option value="940">'BB_940'</option>
+            <option value="941">'BB_941'</option>
+            <option value="943">'BB_943'</option>
+            <option value="944">'BB_944'</option>
+            <option value="945">'BB_945'</option>
+            <option value="946">'BB_946'</option>
+            <option value="947">'BB_947'</option>
+            <option value="948">'BB_948'</option>
+            <option value="949">'BB_949'</option>
+            <option value="950">'BB_950'</option>
+            <option value="952">'BB_952'</option>
+            <option value="953">'BB_953'</option> -->
+        </select>
 
-        <div class="row">
-            <div class="col-md-12">
-                <!-- <h2>Look at all of the current pet pals!</h2> -->
-                <div id="plot"></div>
-            </div>
-        </div>
+        <!-- metadata table -->
+        <div class="col-md-2">
+            <table class="table">
+                <thead>
+                   <tr>
+                      <th scope="row">Sample Metadata</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                      <th scope="row"></th>
+                      <td>'AGE':</td>
+                      <td>24.0</td>
+                   </tr>
+                   <tr>
+                      <th scope="row"></th>
+                      <td>'BBTYPE':</td>
+                      <td>'I'</td>
+                   </tr>
+                   <tr>
+                      <th scope="row"></th>
+                      <td>'ETHNICITY':</td>
+                      <td>'Caucasian'</td>
+                   </tr>
+                   <tr>
+                      <th scope="row"></th>
+                      <td>'GENDER':</td>
+                      <td>'F'</td>
+                   </tr>
+                   <tr>
+                      <th scope="row"></th>
+                      <td>'LOCATION':</td>
+                      <td>'Beaufort/NC'</td>
+                   </tr>
+                </tbody>
+              </table>
+        </div>      
 
-        <div class="row">
-            <div class="col-md-12">
-                <!-- <h2><a href="/send">Add your pet here!</a></h2> -->
-            </div>
-        </div>
+
+        
+
+        
     </div>
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>

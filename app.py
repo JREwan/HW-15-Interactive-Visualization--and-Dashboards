@@ -17,7 +17,9 @@ app = Flask(__name__)
 # create route that renders index.html template
 @app.route("/")
 def home():
+
     return render_template("index.html")
+
 
 #################################################
 # Welcome to panda world!
@@ -51,37 +53,43 @@ def metadata(sample):
     bbb_metadata = "Belly_Button_Biodiversity_Metadata.csv"
     bbb_metadata_df = pd.read_csv(bbb_metadata, encoding = "utf-8")
     #set new index
-    bbb_meta_by_sampleid_df = bbb_metadata_df.set_index("SAMPLEID")
-    sample_data_df = bbb_meta_by_sampleid_df.loc[[sample],["AGE", "BBTYPE", "ETHNICITY", "GENDER", "LOCATION"]] 
-    sample_dict = sample_data_df.to_dict(orient='records')
+    return_df_meta = bbb_metadata_df[bbb_metadata_df['SAMPLEID'] == int(sample)]
+    # bbb_meta_by_sampleid_df = bbb_metadata_df.set_index("SAMPLEID")
+    sample_data_df = return_df_meta[["AGE", "BBTYPE", "ETHNICITY", "GENDER", "LOCATION"]] 
+    sample_dict = sample_data_df.to_dict(orient='records')  
     
     return jsonify(sample_dict)
 
 @app.route("/wfreq/<sample>")
 def wfreq(sample):
     wash_freq = 0
+    sample_i = int(sample)
     bbb_metadata = "Belly_Button_Biodiversity_Metadata.csv"
     bbb_metadata_df = pd.read_csv(bbb_metadata, encoding = "utf-8")
     #set new index
-    bbb_meta_by_sampleid_df = bbb_metadata_df.set_index("SAMPLEID")
-    wash_freq = bbb_meta_by_sampleid_df.loc[sample, "WFREQ"]
-    return wash_freq
+    return_df_wfreq = bbb_metadata_df[bbb_metadata_df['SAMPLEID'] == int(sample)]
+    wfreq_data_df = return_df_wfreq[["WFREQ"]] 
+    wfreq_dict = wfreq_data_df.to_dict(orient='records')  
+    return jsonify(wfreq_dict)
+
 
 @app.route("/samples/<sample>")
 def samples(sample):
     otu_samples_dict = {}
     bbb_samples = "belly_button_biodiversity_samples.csv"
     bbb_samples_df = pd.read_csv(bbb_samples, encoding = "utf-8")
-    results_df = bbb_samples_df[['otu_id',sample]]
+    bbb_samples_dict = bbb_samples_df.to_dict(orient='records')
+    return jsonify(bbb_samples_dict)
 
-    otu_list = bbb_samples_df['otu_id'].tolist()
-    sample_list = bbb_samples_df[sample].tolist()
-    keys = ["otu_ids", "sample_values"]
-    values = [otu_list, sample_list]
-    otu_samples_dict = dict(zip(keys, values))
+    #results_df = bbb_samples_df[['otu_id',sample]]
+    #otu_list = bbb_samples_df['otu_id'].tolist()
+    #sample_list = bbb_samples_df[sample].tolist()
+    #keys = ["otu_ids", "sample_values"]
+    #values = [otu_list, sample_list]
+    #otu_samples_dict = dict(zip(keys, values))
 
-    return jsonify(otu_samples_dict)   
+    #return jsonify(otu_samples_dict)   
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', debug=True)
 
