@@ -1,7 +1,7 @@
 # import necessary libraries
 import numpy as np
 import pandas as pd
-
+from flask_sqlalchemy import SQLAlchemy
 from flask import (
     Flask,
     render_template,
